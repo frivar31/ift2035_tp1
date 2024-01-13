@@ -1,0 +1,33 @@
+;;; Quelques exemples.                 -*- mode: lisp-data; coding: utf-8 -*-
+
+(def ex1 10)                                                     ; ↝ 10 : Int
+
+(def ex2 (+ 5 3))                                                ; ↝ 8 : Int
+
+(dec ex3 (Int -> Int))                                            ; ↝ <fonction> : Int -> Int
+(def ex3 (fun x (* x 2)))                        
+(def ex4 (ex3 5))                                                  ; ↝ 10 : Int
+
+(dec result3 Int)
+(def result3 (let ((ex5 (ex3 5))) (* ex5 3)))             ; ↝ 30 : Int
+
+(def ex6 ((* (: 2 Int)) (: 7 Int)))                                  ; ↝ 14 : Int
+
+(dec mult3ints (Int Int Int -> Int))
+(def mult3ints (fun x (fun y ( fun z (* (* x y) z)))))               ; ↝ <fonction> : Int -> Int -> Int -> Int
+(def result4 (mult3ints 5 2 7))                                      ; ↝ 70 : Int
+
+(dec divise (Int Int Int -> Int))
+(def divise (fun x (fun y  (fun z (/ x (/ y z))))))                 ; ↝ <fonction> : Int -> Int -> Int -> Int
+
+(def result5 (divise 5 3 2))                                         ; ↝ 5 : Int
+
+;(def result6 (divise 3 2 3))                                       ; ↝ 0 : error on peux pas diviser par 0
+
+(dec sum5Ints (Int Int Int Int Int -> Int))
+(def sum5Ints (fun a (fun  b (fun  c (fun d (fun  e (+ (+ (+ (+ a b) c) d) e)))))))  ; ↝ <fonction> : Int -> Int -> Int -> Int -> Int -> Int
+(def result7 (sum5Ints 1 2 3 4 5)) ; ↝ 15 : Int
+
+;(dec fib (Int -> Int))
+;(def fib (fun n (if0 n 0 (if0 (- n 1) 1 (+ (fib (- n 1)) (fib (- n 2)))))))            ;appel recursif marche pas
+;(def resutat (fib 6))  ; ↝ 8 : Int
